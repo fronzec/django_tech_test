@@ -12,3 +12,5 @@ urlpatterns = [
 
     path('v1/locations/', include(urlpatterns_v1_locations))
 ]
+
+# TODO: 24/01/20 must add linesmodel endpoints

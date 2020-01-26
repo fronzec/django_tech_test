@@ -1,7 +1,7 @@
 # coding: utf8
-from django.db import models
+import uuid
 
-from apps.utils import create_id
+from django.db import models
 
 
 class LocationModel(models.Model):
@@ -15,8 +15,7 @@ class LocationModel(models.Model):
             geometry -- Similar to coordinate but using with postgis
     """
 
-    id = models.CharField(default=create_id('loc_'), primary_key=True,
-                          max_length=30, unique=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
     latitude = models.DecimalField(max_digits=19, decimal_places=16)
     longitude = models.DecimalField(max_digits=19, decimal_places=16)
