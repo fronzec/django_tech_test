@@ -33,4 +33,7 @@ class ListAPIView(ListModelMixin, GenericAPIView):
 
 
 class ListCreateView(CreateAPIView, ListAPIView):
+    """
+    View for create and listing a queryset.
+    """
     pass
