@@ -11,24 +11,25 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-from dotenv import load_dotenv
+import environ
+
+root = environ.Path(__file__)
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Load envs from .env.example.example file
-load_dotenv(os.path.join(BASE_DIR, '.env.example.example'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = env.bool('DEBUG', False)
 
-ALLOWED_HOSTS = os.getenv('DEBUG')
+ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=[]))
 
 
 # Application definition
@@ -89,31 +90,28 @@ WSGI_APPLICATION = 'urbvan.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
+    'default': {},
     'master': {
-        'ENGINE': os.getenv('DB_WRITABLE_ENGINE'),
-        'NAME': os.getenv('DB_WRITABLE_DATABASE'),
-        'USER': os.getenv('DB_WRITABLE_USER'),
-        'PASSWORD': os.getenv('DB_WRITABLE_PASSWORD'),
-        'HOST': os.getenv('DB_WRITABLE_HOST'),
-        'PORT': os.getenv('DB_WRITABLE_PORT'),
+        'ENGINE':   env.str('DB_WRITABLE_ENGINE'),
+        'NAME':     env.str('DB_WRITABLE_DATABASE'),
+        'USER':     env.str('DB_WRITABLE_USER'),
+        'PASSWORD': env.str('DB_WRITABLE_PASSWORD'),
+        'HOST':     env.str('DB_WRITABLE_HOST'),
+        'PORT':     env.str('DB_WRITABLE_PORT'),
     },
     'slave': {
-        'ENGINE': os.getenv('DB_SLAVE_DATABASE'),
-        'NAME': os.getenv('DB_SLAVE_DATABASE'),
-        'USER': os.getenv('DB_SLAVE_USER'),
-        'PASSWORD': os.getenv('DB_SLAVE_PASSWORD'),
-        'HOST': os.getenv('DB_SLAVE_HOST'),
-        'PORT': os.getenv('DB_SLAVE_PORT'),
+        'ENGINE':   env.str('DB_SLAVE_ENGINE'),
+        'NAME':     env.str('DB_SLAVE_DATABASE'),
+        'USER':     env.str('DB_SLAVE_USER'),
+        'PASSWORD': env.str('DB_SLAVE_PASSWORD'),
+        'HOST':     env.str('DB_SLAVE_HOST'),
+        'PORT':     env.str('DB_SLAVE_PORT'),
     }
 }
 
 SLAVE_DATABASES = ['slave']
 
-DATABASE_ROUTERS = ['.routers.MasterSlaveRouter']
+DATABASE_ROUTERS = ['urbvan.settings.routers.MasterSlaveRouter']
 
 
 # Password validation
