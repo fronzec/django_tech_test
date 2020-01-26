@@ -3,11 +3,10 @@ from django.urls import path
 
 from .v1 import views as views_v1
 
-# TODO: 24/01/20 add endpoints
-urlpatterns_v1_locations = ([
+urlpatterns_v1_locations = ([path('', views_v1.LocationModelView.as_view()),
+                             path('<str:pk>/', views_v1.LocationModelDetail.as_view()),
+                             ], 'locations')
 
-    path('',
-         views_v1.LocationView.as_view(),
-         name='v1_list_create_location'),
-
-], 'locations')
+urlpatterns_v1_stations = ([path('', views_v1.StationModelView.as_view()),
+                            path('<str:pk>/', views_v1.StationModelDetail.as_view()),
+                            ], 'stations')
