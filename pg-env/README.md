@@ -1,1 +1,0 @@
-# PostgresSql Replication for Docker
