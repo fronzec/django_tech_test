@@ -3,6 +3,7 @@ from django.urls import path
 
 from .v1 import views as views_v1
 
+# TODO: 24/01/20 add endpoints
 urlpatterns_v1_locations = ([
 
     path('',
