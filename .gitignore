@@ -80,3 +80,5 @@ notebooks/
 Pycharm
 .idea/
 urbvan/db.sqlite3
+
+urbvan/settings/.env

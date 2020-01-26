@@ -1,0 +1,35 @@
+version: "3"
+services:
+  pg_master:
+    build: ./master
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=testdb
+      - PG_REP_USER=rep
+      - PG_REP_PASSWORD=123456
+    ports:
+      - "5432:5432"
+    networks:
+      default:
+        aliases:
+          - pg_cluster
+  pg_slave:
+    build: ./slave
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=testdb
+      - PG_REP_USER=rep
+      - PG_REP_PASSWORD=123456
+      - PG_MASTER_HOST=pg_master
+    ports:
+      - "5433:5432"
+    networks:
+      default:
+        aliases:
+          - pg_cluster
+volumes:
+  pg_data:
