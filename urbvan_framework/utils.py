@@ -3,6 +3,9 @@ from .schemas import (BaseResponseSchema, BaseBodySchema)
 
 
 def render_response_error(errors={}):
+    """
+    This method allow creates an error response
+    """
     list_errors = []
     for key, value in errors.items():
 
@@ -19,7 +22,9 @@ def render_response_error(errors={}):
 
 
 def render_to_response(body={}):
-
+    """
+    This method allow creates response body
+    """
     response = {}
     response = BaseBodySchema().dump({
         "results": [body]

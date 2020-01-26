@@ -5,7 +5,9 @@ from .models import LocationModel
 
 
 class LocationFactory(factory.django.DjangoModelFactory):
-
+    """
+    Location factory for unit test
+    """
     class Meta:
         model = LocationModel
 

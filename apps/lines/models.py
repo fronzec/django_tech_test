@@ -7,14 +7,30 @@ from apps.stations.models import StationModel
 
 
 class LineModel(models.Model):
+    """
+    The line model
 
+    Fields:
+        id - the unique identifier
+        name - the name of the line
+        color - the color of the line
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
     color = models.CharField(max_length=8)
 
 
 class RouteModel(models.Model):
+    """
+    The Route model, composed by a line 1-1 relation and many stations
 
+    Fields:
+        id - the unique identifier
+        line - the associated line
+        stations - the station of the route
+        direction - True if has direction
+        is_active - True if the route is active
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     line = models.ForeignKey(LineModel, on_delete=models.DO_NOTHING)
     stations = models.ManyToManyField(StationModel)

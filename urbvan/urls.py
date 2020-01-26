@@ -7,6 +7,8 @@ from rest_framework.authtoken import views
 from apps.stations.urls import urlpatterns_v1_locations, urlpatterns_v1_stations
 from apps.lines.urls import urlpatterns_lines, urlpatterns_routes
 
+
+# API endpoints
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-token-auth/', views.obtain_auth_token),

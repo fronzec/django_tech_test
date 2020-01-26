@@ -6,7 +6,9 @@ from .utils import (render_to_response, render_response_error)
 
 
 class CreateModelMixin(mixins.CreateModelMixin):
-
+    """
+    Custom create mixin for a custom behaviour during model creation
+    """
     def create(self, request, *args, **kwargs):
 
         serializer = self.get_serializer(data=request.data)
@@ -37,7 +39,9 @@ class CreateModelMixin(mixins.CreateModelMixin):
 
 
 class ListModelMixin(object):
-
+    """
+    Custom list mixin for a custom behaviour during model listing
+    """
     def list(self, request, *args, **kwargs):
 
         queryset = self.get_queryset()

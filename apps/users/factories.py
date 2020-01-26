@@ -7,7 +7,9 @@ from rest_framework.authtoken.models import Token
 
 
 class UserFactory(factory.django.DjangoModelFactory):
-
+    """
+    User factory for unit tests
+    """
     class Meta:
         model = User
 
@@ -19,7 +21,9 @@ class UserFactory(factory.django.DjangoModelFactory):
 
 
 class TokenFactory(factory.django.DjangoModelFactory):
-
+    """
+    Token factory for unit tests
+    """
     class Meta:
         model = Token
         django_get_or_create = ('user',)
