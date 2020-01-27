@@ -16,5 +16,6 @@ La prueba tiene un tiempo para desarrollarse de 3 días
 
 
 # NOTAS ADICIONALES
-Correr con `docker-compose up --build`
-Por default se crea el ususario `urbvan` con password `pruebatecnica` con el cual se puede obtener el token para hacer uso del API, se puede importar la coleccion de postman `Backend Prueba Técnica URBVAN.postman_collection.json` para ver los endpoints disponibles.
+- Correr con `docker-compose up --build`
+- Por default se crea el ususario `urbvan` con password `pruebatecnica` con el cual se puede obtener el token para hacer uso del API, se puede importar la coleccion de postman `Backend Prueba Técnica URBVAN.postman_collection.json` para ver los endpoints disponibles.
+- Por default la aplicacion se ejecuta en el puerto **8080**.
