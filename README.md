@@ -1,10 +1,5 @@
-### ¿Te encontraste este test por casualidad?
-### No te preocupes, realiza la prueba y envíanos tu cv a dharwin@urbvan.com
-
 # Introducción
-Hola *aspirante*,
-
-Bienvenido a la prueba técnica para la vacante de **backend developer** en urbvan. El objetivo de esta prueba es analizar tus habilidades para solucionar problemas y la forma en como te desenvuelves a la hora de **tirar código**.
+Prueba tecnica
 
 # Objetivos
 -[x] Crea un CRUD para cada modelo.
@@ -17,10 +12,7 @@ Bienvenido a la prueba técnica para la vacante de **backend developer** en urbv
 -[X] Crear un router para separar la base de datos de lectura y escritura. 
 
 
-La prueba tiene un tiempo para desarrollarse de 3 días, si tienes alguna duda por favor, házmela saber.
-
-
-Recuerda, en **URBVAN** queremos a los mejores y sabemos que tú puedes ser uno de ellos.
+La prueba tiene un tiempo para desarrollarse de 3 días
 
 
 # NOTAS ADICIONALES
