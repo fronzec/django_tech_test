@@ -154,11 +154,9 @@ STATIC_URL = '/static/'
 
 
 # Django rest framework configuration
+# TODO: 27/01/20 add permisssion classes 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    )
 }
