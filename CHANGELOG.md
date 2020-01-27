@@ -7,6 +7,7 @@ Changelog
 
 New
 ~~~
+- Using gunicorn to run the app. [Eduardo C. Flores Ambrosio]
 - Routing db. [Eduardo C. Flores Ambrosio]
 - Initial pg replication master(write) slave(read) databases. [Eduardo
   C. Flores Ambrosio]
@@ -15,6 +16,9 @@ New
 
 Changes
 ~~~~~~~
+- Additional adjustments to run the application with gunicorn. [Eduardo
+  C. Flores Ambrosio]
+- Updating gitignore file. [Eduardo C. Flores Ambrosio]
 - Migrating to django-environ to inject envs. [Eduardo C. Flores
   Ambrosio]
 - Adjusting the router for maste slave DBs. [Eduardo C. Flores Ambrosio]
