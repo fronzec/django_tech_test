@@ -11,21 +11,25 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import environ
+
+root = environ.Path(__file__)
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#r()zhq+4q4zezfwx94^l7ll2dm@0vx&82h@!$9l%9i#ndsvkr'
+SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = tuple(env.list('ALLOWED_HOSTS', default=[]))
 
 
 # Application definition
@@ -86,11 +90,28 @@ WSGI_APPLICATION = 'urbvan.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': {},
+    'master': {
+        'ENGINE':   env.str('DB_WRITABLE_ENGINE'),
+        'NAME':     env.str('DB_WRITABLE_DATABASE'),
+        'USER':     env.str('DB_WRITABLE_USER'),
+        'PASSWORD': env.str('DB_WRITABLE_PASSWORD'),
+        'HOST':     env.str('DB_WRITABLE_HOST'),
+        'PORT':     env.str('DB_WRITABLE_PORT'),
+    },
+    'slave': {
+        'ENGINE':   env.str('DB_SLAVE_ENGINE'),
+        'NAME':     env.str('DB_SLAVE_DATABASE'),
+        'USER':     env.str('DB_SLAVE_USER'),
+        'PASSWORD': env.str('DB_SLAVE_PASSWORD'),
+        'HOST':     env.str('DB_SLAVE_HOST'),
+        'PORT':     env.str('DB_SLAVE_PORT'),
     }
 }
+
+SLAVE_DATABASES = ['slave']
+
+DATABASE_ROUTERS = ['urbvan.settings.routers.MasterSlaveRouter']
 
 
 # Password validation
@@ -136,5 +157,8 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-    )
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
 }

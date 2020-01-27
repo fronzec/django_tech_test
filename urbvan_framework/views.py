@@ -2,7 +2,7 @@
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from .mixins import (CreateModelMixin, ListModelMixin)
+from .mixins import CreateModelMixin, ListModelMixin
 from .schemas import PaginationResponse
 from .authentication import CustomTokenAuthentication
 
@@ -33,4 +33,7 @@ class ListAPIView(ListModelMixin, GenericAPIView):
 
 
 class ListCreateView(CreateAPIView, ListAPIView):
+    """
+    View for create and listing a queryset.
+    """
     pass

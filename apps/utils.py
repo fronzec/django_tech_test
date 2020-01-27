@@ -3,11 +3,18 @@ from datetime import datetime
 from uuid import uuid4
 
 
-def create_id(identifier):
-    id_base = "{}{}{}{}{}{}{}{}"
+# TODO: 26/01/2020 Review this method
+def create_id(prefix):
+    """
+    Create an id based on the given prefix, it appends custom information to generate
+    an id
+    Fields:
+            id -- A must not empty prefix used to create the id
+    """
+    id_base = "{} {} {} {} {} {} {} {}"
     now = datetime.utcnow()
     id_base = id_base.format(
-        identifier,
+        prefix,
         now.year,
         now.month,
         now.day,

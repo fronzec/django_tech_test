@@ -1,23 +1,33 @@
 # coding: utf8
+import uuid
+
 from django.db import models
 
 from apps.stations.models import StationModel
 
-from apps.utils import create_id
-
 
 class LineModel(models.Model):
+    """
+    The line model
 
-    id = models.CharField(default=create_id('line_'), primary_key=True,
-                          max_length=30, unique=True)
+    Fields:
+        name - the name of the line
+        color - the color of the line
+    """
     name = models.CharField(max_length=100)
     color = models.CharField(max_length=8)
 
 
 class RouteModel(models.Model):
+    """
+    The Route model, composed by a line 1-1 relation and many stations
 
-    id = models.CharField(default=create_id('route_'), primary_key=True,
-                          max_length=30, unique=True)
+    Fields:
+        line - the associated line
+        stations - the station of the route
+        direction - True if has direction
+        is_active - True if the route is active
+    """
     line = models.ForeignKey(LineModel, on_delete=models.DO_NOTHING)
     stations = models.ManyToManyField(StationModel)
     direction = models.BooleanField(default=True)
