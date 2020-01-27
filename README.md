@@ -2,14 +2,14 @@
 Prueba tecnica
 
 # Objetivos
--[x] Crea un CRUD para cada modelo.
--[ ] Agregar un sistema de permisos por servicio y 3 categorias de usuarios.
--[x] Documenta el código.
--[ ] Crea pruebas unitarias.
--[ ] Hay errores y warnings puestos en el código, encuéntralos y crea un fix.
--[x] Crea commits descriptivos.
--[x] Crear un archivo Dockerfile para correr el proyecto con nginx y wsgi.
--[X] Crear un router para separar la base de datos de lectura y escritura. 
+- [x] Crea un CRUD para cada modelo.
+- [ ] Agregar un sistema de permisos por servicio y 3 categorias de usuarios.
+- [x] Documenta el código.
+- [ ] Crea pruebas unitarias.
+- [ ] Hay errores y warnings puestos en el código, encuéntralos y crea un fix.
+- [x] Crea commits descriptivos.
+- [x] Crear un archivo Dockerfile para correr el proyecto con nginx y wsgi.
+- [X] Crear un router para separar la base de datos de lectura y escritura. 
 
 
 La prueba tiene un tiempo para desarrollarse de 3 días
