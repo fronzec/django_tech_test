@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: gunicorn urbvan.wsgi --bind 0.0.0.0:8000
+    expose:
+      - 8000
+    env_file:
+      - ./.env.local
+    depends_on:
+      - pg_master
+      - pg_slave
+  nginx:
+    build: ./nginx
+    ports:
+      - 8080:80
+    depends_on:
+      - web
+      - pg_master
+      - pg_slave
+  pg_master:
+    build: ./pg-denenv/master
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=testdb
+      - PG_REP_USER=rep
+      - PG_REP_PASSWORD=123456
+    ports:
+      - "5432:5432"
+  pg_slave:
+    build: ./pg-denenv/slave
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=testdb
+      - PG_REP_USER=rep
+      - PG_REP_PASSWORD=123456
+      - PG_MASTER_HOST=pg_master
+    ports:
+      - "5433:5432"
+volumes:
+  pg_data:
